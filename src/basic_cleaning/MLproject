@@ -1,0 +1,38 @@
+name: basic_cleaning
+conda_env: conda.yml
+
+entry_points:
+  main:
+    parameters:
+
+      tmp_dir:
+        description:  directory to save artifacts to
+        type: string
+
+      input_artifact:
+        description: input artifact to be cleaned (*.csv)
+        type: string
+
+      output_artifact:
+        description: cleaned output artifact (*.csv)
+        type: string
+
+      output_type:
+        description: artifact type
+        type: string
+
+      output_description:
+        description: artifact description
+        type: string
+
+      min_price:
+        description: Minimum valid price 
+        type: string
+
+      max_price:
+        description: Maximum valid price
+        type: string
+
+
+    command: >-
+        python run.py  --tmp_dir {tmp_dir} --input_artifact {input_artifact}  --output_artifact {output_artifact}  --output_type {output_type}  --output_description {output_description}  --min_price {min_price}  --max_price {max_price} 

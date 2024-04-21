@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import scipy.stats
-
+import logging 
 
 def test_column_names(data):
 
@@ -60,6 +60,29 @@ def test_similar_neigh_distrib(data: pd.DataFrame, ref_data: pd.DataFrame, kl_th
     assert scipy.stats.entropy(dist1, dist2, base=2) < kl_threshold
 
 
-########################################################
-# Implement here test_row_count and test_price_range   #
-########################################################
+def test_row_count(data):
+    """ 
+    check the shape of the dataframe
+    
+    parametes: pandas dataframe
+    """
+    logging.info("TEST row count")
+    assert 15000 < data.shape[0] < 1000000
+
+
+def test_price_range (data, min_price, max_price):
+    """
+    check the price ranges if it is between the min and max values.
+
+    parameters: 
+        data: pandas dataframe
+        
+        min_price: float
+            minimum valid price 
+        
+        max_price: float
+            maximum valid price 
+    """
+
+    logging.info("TEST price range")
+    assert data.shape[0] == data['price'].between(min_price, max_price).shape[0]
