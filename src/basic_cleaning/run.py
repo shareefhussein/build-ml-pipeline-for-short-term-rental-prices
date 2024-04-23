@@ -34,6 +34,7 @@ def go(args):
     # Convert last_review to datetime
     df['last_review'] = pd.to_datetime(df['last_review'])
 
+
     tmp_dir  = os.path.join(args.tmp_dir,args.output_artifact)
     logger.info(f"save final cleaned artifact to: {tmp_dir}")
     df.to_csv(tmp_dir , index=False)

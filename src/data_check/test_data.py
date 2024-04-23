@@ -70,19 +70,8 @@ def test_row_count(data):
     assert 15000 < data.shape[0] < 1000000
 
 
-def test_price_range (data, min_price, max_price):
+def test_price_range(data: pd.DataFrame, min_price: int, max_price: int):
     """
-    check the price ranges if it is between the min and max values.
-
-    parameters: 
-        data: pandas dataframe
-        
-        min_price: float
-            minimum valid price 
-        
-        max_price: float
-            maximum valid price 
+    Test that prices in data are within expected range (min_price, max_price)
     """
-
-    logging.info("TEST price range")
-    assert data.shape[0] == data['price'].between(min_price, max_price).shape[0]
+    assert all(data['price'].between(min_price, max_price))
